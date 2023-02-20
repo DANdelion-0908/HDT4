@@ -5,43 +5,48 @@ import java.io.IOException;
 
 public class FileReader {
 
+    static ArrayList<String> calculo = new ArrayList<>();
+
     public FileReader() {
-        Scanner entrada = new Scanner(System.in);
+        Scanner keyboard = new Scanner(System.in);
         ArrayList<String> operaciones = new ArrayList<String>();
 
-        System.out.println("Ingresa la dirección del archivo a leer.");
-        String file = entrada.nextLine();
+        boolean key = true;
 
-        try {
-            BufferedReader reader = new BufferedReader(new java.io.FileReader(file));
-            String line;
-            while((line = reader.readLine()) != null) {
-                operaciones.add(line);
-                
+        while(key) {
+
+            System.out.println("Ingresa la dirección del archivo a leer.");
+            String file = keyboard.nextLine();
+
+            try {
+                BufferedReader reader = new BufferedReader(new java.io.FileReader(file));
+
+                String line;
+
+                while((line = reader.readLine()) != null) {
+                    operaciones.add(line);  
+                }
+
+                reader.close();
+                key = false;
+
+            } catch (IOException e) {
+                System.out.println("No se ha encontrado el archivo a leer.");
             }
-
-            reader.close();
-
-        } catch (IOException e) {
-            System.out.println("No se ha encontrado el archivo a leer.");
         }
 
         for(String a: operaciones) {
 
             String[] operacion = a.split("");
-            ArrayList<String> calculo = new ArrayList<>();
             for(String b: operacion) {
                 calculo.add(b);
-
             }
-
-            
         }
 
-        entrada.close();
-       
+    }
 
-
+    public static ArrayList<String> getCalculo() {
+        return calculo;
     }
 
 }

@@ -5,6 +5,9 @@ public abstract class Calculator<T> {
     private ArrayList<T> Data = new ArrayList<>();
     private int res;
 
+    public Calculator() throws Exception {
+
+    }
 
     /**
      * This function sets the data of the class to the data that is passed in
@@ -24,17 +27,16 @@ public abstract class Calculator<T> {
 
        // Iterating through the ArrayList and checking if the element is a number or a symbol.
         for (T t : Data) {
+
             try {
                 int a = Integer.parseInt(t.toString());
-                //System.out.print("Este dígito es " + a + "\n");  //Esto es para testeo
                 operandos.add(a);
+
             } catch (NumberFormatException e) {
-                //System.out.println("Halle el símbolo " + t + "\n"); //Esto es para testeo
-                //ES SíMBOLO
+
                 int top = operandos.size() - 1;
                 int second = top - 1;
-                switch(t.toString()) {  //TODO: Añadir programación defensiva.
-                                        //TODO: Se repite mucho código. Deberíamos de hacer algo para reciclarlo.
+                switch(t.toString()) {  
         
                     // Adding the top element of the stack by the second element of the stack.
                     case "+": {
@@ -94,10 +96,9 @@ public abstract class Calculator<T> {
         ArrayList<T> getData(){
             return Data;
          }
-    public Calculator() {
 
+        
 
-    }
 }
 
 
