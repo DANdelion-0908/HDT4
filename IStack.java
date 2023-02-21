@@ -4,9 +4,9 @@ public interface IStack<T> {
     
     public void push(T value);
 
-    T pull();
+    String pull();
 
-    T peek();
+    String peek();
 
     boolean isEmpty();
 }

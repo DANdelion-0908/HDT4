@@ -13,13 +13,13 @@ public class StackArrayList<T> extends Stack<T> {
     }
 
     @Override
-    public T peek() {
+    public String peek() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public T pull() {
+    public String pull() {
         // TODO Auto-generated method stub
         return null;
     }

@@ -3,12 +3,16 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+/**
+ * This class reads files.
+ */
 public class FileReader {
 
     static ArrayList<String> calculo = new ArrayList<>();
 
+    // Reading the file and adding the content to an ArrayList.
     public FileReader() {
-        Scanner keyboard = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
         ArrayList<String> operaciones = new ArrayList<String>();
 
         boolean key = true;
@@ -16,7 +20,7 @@ public class FileReader {
         while(key) {
 
             System.out.println("Ingresa la dirección del archivo a leer.");
-            String file = keyboard.nextLine();
+            String file = entrada.nextLine();
 
             try {
                 BufferedReader reader = new BufferedReader(new java.io.FileReader(file));
@@ -24,7 +28,11 @@ public class FileReader {
                 String line;
 
                 while((line = reader.readLine()) != null) {
-                    operaciones.add(line);  
+
+                    InfixReader traductor = new InfixReader();
+                    String traducido = InfixReader.infixToPostfix(line);
+                    
+                    operaciones.add(traducido);  
                 }
 
                 reader.close();
@@ -35,17 +43,22 @@ public class FileReader {
             }
         }
 
-        for(String a: operaciones) {
+        for(String a : operaciones) {
 
             String[] operacion = a.split("");
-            for(String b: operacion) {
+            for(String b : operacion) {
                 calculo.add(b);
             }
         }
 
     }
 
-    public static ArrayList<String> getCalculo() {
+    /**
+     * This function returns the ArrayList of Strings that contains the calculation
+     * 
+     * @return The ArrayList of Strings.
+     */
+    public ArrayList<String> getCalculo() {
         return calculo;
     }
 

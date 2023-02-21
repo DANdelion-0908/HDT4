@@ -1,14 +1,18 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Calculator<T> {
+public class CalculatorV<T> {
 
-    private ArrayList<T> Data = new ArrayList<>();
+    private String[] Data;
     private int res;
     
-    
     // The constructor of the class.
-    public Calculator() {
-
+    public CalculatorV(ArrayList<String> t) {
+        Data = new String[t.size()];
+        
+        for(int i = 0 ; i < Data.length ; i++) {
+            Data[i] = t.get(i); 
+        }
     }
 
     /**
@@ -16,28 +20,30 @@ public class Calculator<T> {
      * 
      * @param data The data to be displayed in the list.
      */
-    private void setData(ArrayList<T> data) {
+    private void setData(String[] data) {
         this.Data = data;
     }
 
    // The method that calculates the postfix expression.
-    public int Calculate(ArrayList<T> postfix_expression) throws Exception {
+    public int Calculate(String[] postfix_expression) throws Exception {
 
         ArrayList<Integer> operandos = new ArrayList<>();
 
         setData(postfix_expression);
 
        // Iterating through the ArrayList and checking if the element is a number or a symbol.
-        for (T t : Data) {
+        for (int j = 0 ; j < Data.length ; j++) {
             try {
-                int a = Integer.parseInt(t.toString());
+                int a = Integer.parseInt(Data[j]);
                 //System.out.print("Este dígito es " + a + "\n");  //Esto es para testeo
                 operandos.add(a);
+
             } catch (NumberFormatException e) {
 
                 int top = operandos.size() - 1;
                 int second = top - 1;
-                switch(t.toString()) { 
+
+                switch(Data[j]) { 
                     
                     // Adding the top element of the stack by the second element of the stack.
                     case "+": {
@@ -83,35 +89,17 @@ public class Calculator<T> {
             
         }
 
-        
-        
         // Printing the data stored in the object.
         System.out.print(Data);
         return res;    
     }
 
-
-        
-     
-        
         /**
          * This function returns the data stored in the object
          * 
          * @return An ArrayList of type T.
          */
-        ArrayList<T> getData(){
+        String[] getData(){
             return Data;
          }
-
-     
-    
 }
-
-
-
-
-
- 
-
-     
-    

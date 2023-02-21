@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class DriverProgram {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner entrada = new Scanner(System.in);
         FileReader File = new FileReader();
 
@@ -19,14 +19,30 @@ public class DriverProgram {
 
         switch(opt) {
 
-            case 1: System.out.println(FileReader.getCalculo());
+            case 1: 
+            
+            System.out.println("Has seleccionado Array List");
+            Operator.Calculate(File.getCalculo());
 
             break;
 
             case 2: 
+
+            System.out.println("Has seleccionado Lista");
+            Operator.Calculate(File.getCalculo());
+            
+            break;
+
+            case 3: 
+
+            System.out.println("Has seleccionado Vector");
+            CalculatorV micCalculatorV = new CalculatorV<>(File.getCalculo());
+
+            micCalculatorV.Calculate(micCalculatorV.getData());
+
+            break;
         }
-
-
+        
         entrada.close();
     }
 }
